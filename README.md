@@ -1,37 +1,38 @@
-# Notification Service
+# 📨 Notification Service
 
-## Overview
-A notification service built with FastAPI, SQLite, and RabbitMQ that supports Email, SMS, and In-App notifications.
+A microservice-based notification system built with **FastAPI** and **RabbitMQ** to send **email**, **SMS**, and **in-app notifications**. Designed for scalable delivery and background processing using message queues.
 
-## Features
-- API to send and fetch notifications
-- Email, SMS, and In-App notification support
-- Asynchronous processing using RabbitMQ
-- SQLite database for storing In-App notifications
+---
 
-## Setup
+## 🚀 Features
 
-1. **Install dependencies**
+- 🔁 Asynchronous Notification Handling via RabbitMQ
+- 📬 Notification Types: `email`, `sms`, and `in_app`
+- 🧾 SQLite storage for in-app messages
+- ⚡ FastAPI-powered RESTful APIs with Swagger Docs
+- 👨‍🔧 Background consumer to process queued notifications
+- ✅ Easy to extend with real email/SMS APIs (SendGrid, Twilio)
+
+---
+
+## 📦 Tech Stack
+
+- **Python 3.11+**
+- **FastAPI** – Web framework
+- **RabbitMQ** – Queue for background processing
+- **SQLite** – Lightweight DB for storing in-app notifications
+- **Pydantic** – Request validation
+- **Uvicorn** – ASGI server
+
+---
+
+## 🛠️ Setup Instructions
+
+### 1. Clone the repository
+
 ```bash
+git clone https://github.com/zaki28052004/pepsale.git
+cd pepsale
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
-```
-
-2. **Run RabbitMQ** (if not installed locally):
-```bash
-docker run -d --hostname rabbit --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
-```
-
-3. **Start FastAPI server**
-```bash
-uvicorn app.main:app --reload
-```
-
-4. **Run the consumer**
-```bash
-python app/workers/consumer.py
-```
-
-## API Endpoints
-
-- `POST /notifications` – Send a notification
-- `GET /users/{id}/notifications` – Get all in-app notifications for a user
